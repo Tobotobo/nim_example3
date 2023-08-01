@@ -1,0 +1,6 @@
+/bin
+tempCodeRunnerFile.nim
+*.log
+*.log.*
+*.db
+/logs

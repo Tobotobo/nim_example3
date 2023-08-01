@@ -1,0 +1,17 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Nim Debug Build",
+            "type": "shell",
+            "command": "nim compile -d:debug --debuginfo --lineDir:on --debugger:native --out:bin/debug/${fileBasenameNoExtension}.exe ${file}",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+    ]
+}

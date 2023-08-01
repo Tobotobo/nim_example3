@@ -1,0 +1,24 @@
+{
+    "code-runner.runInTerminal": true,
+    "code-runner.executorMap": {
+        "nim": "nim r --verbosity:0 --hints:off"
+    },
+    "editor.formatOnSave": true,
+    "[bat]": {
+        "files.encoding": "shiftjis",
+        "files.eol": "\r\n",
+    },
+    "[nim]": {
+        "files.encoding": "utf8",
+        "files.eol": "\n",
+        "editor.detectIndentation": false,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+    },
+    "java.project.sourcePaths": [
+        "src",
+        "target/generated-sources",
+    ],
+    //"editor.pasteAs.enabled": false,
+    "code-runner.saveFileBeforeRun": true
+}
