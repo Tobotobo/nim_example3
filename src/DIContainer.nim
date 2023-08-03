@@ -36,10 +36,20 @@ let container = create()
 #   quote do:
 #     container.dic[`name`] = `creator`
 
-macro add*[T: typedesc](creator: ServiceCreator): untyped =
-  let name = getTypeImpl(T).toStrLit
-  quote do:
-    container.dic[`name`] = `creator`
+# macro add*[T: typedesc](creator: ServiceCreator): untyped =
+#   let name = getTypeImpl(T).toStrLit
+#   quote do:
+#     container.dic[`name`] = `creator`
+
+template add*[T: untyped](creator: ServiceCreator) =
+  let name = typeof(T).name
+  container.dic[name] = creator
+
+# proc add*[T](creator: ServiceCreator) =
+#   let name = typeof(T).name
+#   container.dic[name] = creator
+
+# **************************************************************
 
 # proc get*[T](container: DIContainer): T =
 #   let name = typeof(T).name
@@ -70,13 +80,25 @@ macro add*[T: typedesc](creator: ServiceCreator): untyped =
 #     let value = creator(container)
 #     T(value)
 
-macro get*[T: string](): untyped =
-  quote do:
-    let creator = container.dic[`T`]
-    let value = creator(container)
-    T(value)
+# macro get*[T: string](): untyped =
+#   quote do:
+#     let creator = container.dic[`T`]
+#     let value = creator(container)
+#     T(value)
     
 # proc get*[T](t: T): T =
+#   let name = typeof(T).name
+#   let creator = container.dic[name]
+#   let value = creator(container)
+#   return T(value)
+
+template get*[T: untyped](): T =
+  let name = typeof(T).name
+  let creator = container.dic[name]
+  let value = creator(container)
+  T(value)
+
+# proc get*[T](): T =
 #   let name = typeof(T).name
 #   let creator = container.dic[name]
 #   let value = creator(container)

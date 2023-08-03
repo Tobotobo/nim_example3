@@ -6,11 +6,11 @@ import ./Object
 
 type MyClass = ref object of Object 
 
-proc sayHello() =
+proc sayHello(self: MyClass) =
   echo "hello"
 
+DIContainer.add[IHelloService](_ => HelloService())
+DIContainer.get[IHelloService]().sayHello()
+
 DIContainer.add[MyClass](_ => MyClass())
-
-let helloService = DIContainer.get[MyClass]()
-
-helloService.sayHello()
+DIContainer.get[MyClass]().sayHello()
