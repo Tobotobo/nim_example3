@@ -1,8 +1,10 @@
-import ./ooutils
+import ./Class
 import ./Object
 
-let uuid* = genUUID()
-
 type IHelloService* = ref object of Object
+
+let class* = Class.New[IHelloService]()
+
+method getClass*(self: IHelloService): Class[IHelloService] {.base.} = class
 
 method sayHello*(self: IHelloService) {.base.} = discard
